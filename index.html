@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Cabin+Sketch:wght@400;700&family=Caveat+Brush&family=Inter:wght@400;600&family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Bookshelf - Note taking app</title>
+  </head>
+  <body>
+    <main class="landing-page">
+      <img id="logo" src="./src/images/logo.png" />
+      <h1 class="title">Bookshelf</h1>
+      <h2 class="sub-title">
+        An user-friendly app to organize your notes or ideas.
+      </h2>
+      <button id="open-button">OPEN</button>
+    </main>
+
+    <!-- book list section  -->
+    <section id="all-books-section">
+      <div class="all-books-header"></div>
+      <div class="all-books-container">
+        <div class="book-lists">
+          <img
+            id="book-1"
+            class="books"
+            src="./src/images/books/book1.png"
+            alt="book1-image"
+          />
+          <img
+            id="book-2"
+            class="books"
+            src="./src/images/books/book2.png"
+            alt="book2-image"
+          />
+          <img
+            id="book-3"
+            class="books"
+            src="./src/images/books/book3.png"
+            alt="book3-image"
+          />
+          <img
+            id="book-4"
+            class="books"
+            src="./src/images/books/book4.png"
+            alt="book4-image"
+          />
+          <img
+            id="book-5"
+            class="books"
+            src="./src/images/books/book5.png"
+            alt="book5-image"
+          />
+          <img
+            id="book-6"
+            class="books"
+            src="./src/images/books/book6.png"
+            alt="book6-image"
+          />
+          <img
+            id="book-7"
+            class="books"
+            src="./src/images/books/book7.png"
+            alt="book7-image"
+          />
+        </div>
+        <button id="add-book">Add Book</button>
+      </div>
+      <div class="all-books-footer"></div>
+      <img
+        class="stationary-image"
+        src="./src/images/stationary.png"
+        alt="stationary"
+      />
+    </section>
+
+    <!-- pages section -->
+    <section id="inside-book-section">
+      <div class="inside-book-container">
+        <h3 class="book-name">Mathematics</h3>
+        <div class="tags">
+          <div class="topics-container">
+            <div class="topics" id="topic-1">Sets</div>
+            <div class="topics" id="topic-2">Functions</div>
+            <div class="topics" id="topic-3">Trigonometry</div>
+            <div class="topics" id="topic-4"></div>
+            <div class="topics" id="topic-5"></div>
+            <div class="topics" id="topic-6"></div>
+            <div class="topics" id="topic-7"></div>
+          </div>
+          <button class="add-topic">Add Topic</button>
+        </div>
+        <div class="white-sheet"></div>
+        <div class="pages-container">
+          <div class="page-numbers">
+            <div class="pages page-1">page 1</div>
+            <div class="pages page-2">page 2</div>
+            <div class="pages page-3">page 3</div>
+          </div>
+          <button class="add-page">Add Page</button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
