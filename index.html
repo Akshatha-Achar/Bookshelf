@@ -11,6 +11,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <!-- <script
+      src="https://kit.fontawesome.com/683aa6d0a2.js"
+      crossorigin="anonymous"
+    ></script> -->
     <title>Bookshelf - Note taking app</title>
   </head>
   <body>
@@ -24,56 +29,16 @@
     </main>
 
     <!-- book list section  -->
-    <section id="all-books-section">
+    <section class="all-books-section hidden">
       <div class="all-books-header"></div>
       <div class="all-books-container">
-        <div class="book-lists">
-          <img
-            id="book-1"
-            class="books"
-            src="./src/images/books/book1.png"
-            alt="book1-image"
-          />
-          <img
-            id="book-2"
-            class="books"
-            src="./src/images/books/book2.png"
-            alt="book2-image"
-          />
-          <img
-            id="book-3"
-            class="books"
-            src="./src/images/books/book3.png"
-            alt="book3-image"
-          />
-          <img
-            id="book-4"
-            class="books"
-            src="./src/images/books/book4.png"
-            alt="book4-image"
-          />
-          <img
-            id="book-5"
-            class="books"
-            src="./src/images/books/book5.png"
-            alt="book5-image"
-          />
-          <img
-            id="book-6"
-            class="books"
-            src="./src/images/books/book6.png"
-            alt="book6-image"
-          />
-          <img
-            id="book-7"
-            class="books"
-            src="./src/images/books/book7.png"
-            alt="book7-image"
-          />
-        </div>
-        <button id="add-book">Add Book</button>
+        <button id="add-book">+</button>
       </div>
-      <div class="all-books-footer"></div>
+      <div class="all-books-footer">
+        <button id="open-book">
+          <!-- <i class="fa-solid fa-book-open"></i>Open book -->
+        </button>
+      </div>
       <img
         class="stationary-image"
         src="./src/images/stationary.png"
@@ -82,22 +47,22 @@
     </section>
 
     <!-- pages section -->
-    <section id="inside-book-section">
+    <section class="inside-book-section hidden">
       <div class="inside-book-container">
-        <h3 class="book-name">Mathematics</h3>
+        <h3 class="book-title">Mathematics</h3>
         <div class="tags">
           <div class="topics-container">
-            <div class="topics" id="topic-1">Sets</div>
-            <div class="topics" id="topic-2">Functions</div>
-            <div class="topics" id="topic-3">Trigonometry</div>
-            <div class="topics" id="topic-4"></div>
-            <div class="topics" id="topic-5"></div>
-            <div class="topics" id="topic-6"></div>
-            <div class="topics" id="topic-7"></div>
+            <input
+              class="topics"
+              id="topic-1"
+              type="text"
+              placeholder="Topic Name"
+              value="Trigonmetry"
+            />
           </div>
           <button class="add-topic">Add Topic</button>
         </div>
-        <div class="white-sheet"></div>
+        <textarea class="white-sheet"></textarea>
         <div class="pages-container">
           <div class="page-numbers">
             <div class="pages page-1">page 1</div>

@@ -47,10 +47,13 @@
   font-size: 1.5rem;
   box-shadow: 4px 5px 2px rgba(144, 101, 101, 0.943);
 }
+#open-button:hover {
+  background: #fb4750;
+}
 
 /* all books section */
 
-#all-books-section {
+.all-books-section {
   /* position: relative; */
   width: 100vw;
   height: 100vh;
@@ -68,40 +71,70 @@
 }
 .all-books-footer {
   grid-area: footer;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 .all-books-container {
   grid-area: books;
   width: 90%;
-  height: 80%;
+  height: 85%;
   justify-self: start;
   background: #f2aa91;
   border-radius: 1rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 8rem);
+  padding: 1rem;
+  justify-content: center;
   align-items: center;
+  grid-gap: 1rem;
+  border: 1px solid red;
 }
-.book-lists {
-  padding: 2%;
-}
+
 .books {
-  width: 6rem;
-  height: 7rem;
-  margin: 1%;
+  background-image: url("./src/images/books/book1.png");
+  height: 8rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* border: 1px solid red; */
+  color: #ffffff;
+
+  font-family: cursive;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 #add-book {
   width: 7rem;
-  height: 2rem;
-  color: #fff;
-  background: #f85d74;
-  box-shadow: 3px 5px 2px #86696e;
-  border-radius: 1rem;
+  height: 7rem;
   border: none;
-  font-family: "Inter";
-  font-size: 1rem;
-  font-weight: 600;
+  background: rgba(0, 0, 0, 0.1);
+  font-size: 4rem;
+  color: rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
   cursor: pointer;
+  transition: background 0.2s;
+}
+#add-book:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+#open-book {
+  background: #ff757d;
+  color: #ffffff;
+  border-radius: 0.7rem;
+  border: none;
+  padding: 0.5rem 1rem;
+
+  font-family: cursive;
+  font-size: 1.5rem;
+  box-shadow: 4px 5px 2px rgba(144, 101, 101, 0.943);
+}
+#open-book:hover {
+  background: #fb4750;
 }
 .stationary-image {
   grid-area: stationary;
@@ -113,7 +146,7 @@
 
 /* section inside the book  */
 
-#inside-book-section {
+.inside-book-section {
   width: 100vw;
   height: 100vh;
   background: #faebdf;
@@ -139,7 +172,7 @@
     "sidebar sheet sheet"
     "sidebar pageNumbers pageNumbers";
 }
-.book-name {
+.book-title {
   grid-area: title;
   justify-self: center;
   align-self: center;
@@ -151,25 +184,25 @@
 .tags {
   grid-area: sidebar;
   height: 95%;
-  width: 95%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  border: 1px solid red;
 }
 .topics {
-  border-radius: 1rem;
-  padding: 0 0.5rem;
+  padding: 0;
+  width: 10rem;
   height: 2rem;
   margin: 0.5rem;
   text-align: center;
   color: white;
   font-family: cursive;
-  font-weight: 400;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-weight: 500;
+  border-radius: 1rem;
+  border: none;
+  font-size: 1.2rem;
+  background: #ff757d;
 }
 #topic-1 {
   background: #ff757d;
@@ -197,12 +230,17 @@
   grid-area: sheet;
   justify-self: center;
 
-  width: 95%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   align-self: start;
   justify-self: start;
   background: #f4f4f3;
-  border-radius: 1.5rem;
+  border: none;
+  outline: none;
+  resize: inherit;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
   box-shadow: 0.6rem 0.6rem 4px #2a2a1f;
 }
 
@@ -251,6 +289,9 @@
   font-weight: 600;
   cursor: pointer;
 }
+.hidden {
+  display: none;
+}
 
 @media only screen and (max-width: 860px) {
   #logo {
@@ -273,7 +314,7 @@
   }
 
   /* all books section  */
-  #all-books-section {
+  .all-books-section {
     grid-template-columns: 0.2fr 3fr 0.2fr;
     grid-template-rows: 0.2fr 3fr 0.2fr;
     grid-template-areas:
@@ -288,26 +329,23 @@
     justify-self: center;
     background: #f2aa91;
     border-radius: 1rem;
-    padding: 2rem;
-  }
-  .book-lists {
-    padding: 1%;
+    padding: 0.7rem;
   }
   .books {
-    width: 5rem;
     height: 6rem;
     margin: 1%;
+    font-size: 0.9rem;
   }
   #add-book {
-    width: 8rem;
-    height: 2rem;
+    width: 6rem;
+    height: 6rem;
+    font-size: 2rem;
   }
   .stationary-image {
     display: none;
   }
-
   /* section inside the book  */
-  .book-name {
+  .book-title {
     font-size: 1.3rem;
   }
 
