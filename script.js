@@ -2,19 +2,23 @@
 const landingPage = document.querySelector(".landing-page");
 const openButton = document.querySelector("#open-button");
 const allBooksSection = document.querySelector(".all-books-section");
-const insideBookSection = document.querySelector(".inside-book-section");
-// openButton.addEventListener("click", function () {
-//   landingPage.classList.add("hidden");
-//   allBooksSection.classList.remove("hidden");
-// });
-
-landingPage.classList.add("hidden");
-// allBooksSection.classList.remove("hidden");
-
-// ALL BOOKS PAGE
-
 const alllBooksContainer = document.querySelector(".all-books-container");
 const addBookButton = document.querySelector("#add-book");
+const insideBookSection = document.querySelector(".inside-book-section");
+const openBookButton = document.querySelector("#open-book");
+const insideBookContainer = document.querySelector(".inside-book-container");
+const bookTitle = document.querySelector(".book-title");
+const topicsContainer = document.querySelector(".topics-container");
+const addTopicButton = document.querySelector(".add-topic");
+const whiteSheet = document.querySelector(".white-sheet");
+
+openButton.addEventListener("click", function () {
+  landingPage.classList.add("hidden");
+  allBooksSection.classList.remove("hidden");
+});
+
+//***************************************************
+// ALL BOOKS PAGE
 
 addBookButton.addEventListener("click", addBooks);
 
@@ -30,6 +34,7 @@ function addBooks() {
     const bookObject = {
       id: Math.floor(Math.random() * 10000),
       bookName: bookNameValue,
+      topics: [],
     };
 
     const bookElement = createBook(bookObject.id, bookObject.bookName);
@@ -49,11 +54,6 @@ function createBook(id, bookName) {
   element.classList.add("books");
   element.classList.add(`book-${id}`);
   element.innerText = bookName;
-
-  // element.addEventListener("click", function () {
-  //   const newBookName = prompt("Enter the new book name:");
-  //   updateBook(id, newBookName);
-  // });
 
   element.addEventListener("dblclick", function () {
     const doDelete = confirm("Are you sure about deleting this book");
@@ -75,92 +75,129 @@ function deleteBook(id, book) {
   alllBooksContainer.removeChild(book);
 }
 
+//***************************************************
 // INSIDE BOOK PAGE
 
-const openBookButton = document.querySelector("#open-book");
-const insideBookContainer = document.querySelector(".inside-book-container");
-const bookTitle = document.querySelector(".book-title");
-const topicsContainer = document.querySelector(".topics-container");
-const addTopicButton = document.querySelector(".add-topic");
+openBookButton.addEventListener("click", openBook);
 
-// openBookButton.addEventListener("click", function () {
-//   const bookDetail = prompt("Enter the book name to open:");
-//   const bookName = bookDetail[0]
-//     .toUpperCase()
-//     .concat(bookDetail.slice(1).toLowerCase());
+function openBook() {
+  const bookNameInput = prompt("Write the book Name to open:");
+  const book = getTheBook(bookNameInput);
 
-//   const requiredBook = getAllBooks().filter(
-//     (book) => book.bookName == bookName
-//   );
+  if (book) {
+    allBooksSection.classList.add("hidden");
+    insideBookSection.classList.remove("hidden");
+    bookTitle.innerText = book.bookName;
 
-//   console.log("From localStorage:", requiredBook);
-
-//   if (!requiredBook[0]) {
-//     alert("book name does not exist. Click again..");
-//   } else {
-//     allBooksSection.classList.add("hidden");
-//     insideBookSection.classList.remove("hidden");
-//     bookTitle.innerText = requiredBook[0].bookName;
-//   }
-// });
-
-// for Testing
-console.log("All books:", getAllBooks());
-allBooksSection.classList.add("hidden");
-insideBookSection.classList.remove("hidden");
-
-const bookName = "Maths";
-const requiredBook = getAllBooks().filter((book) => book.bookName == bookName);
-console.log(requiredBook[0]);
-bookTitle.innerText = requiredBook[0].bookName;
-
-addTopicButton.addEventListener("click", function () {
-  requiredBook[0].topics = {};
-  console.log(requiredBook[0]);
-});
-
-function getAllTopics() {
-  const requiredBook = getAllBooks().filter(
-    (book) => book.bookName == bookTitle.innerText
-  );
-  //   const topicsObj = requiredBook[0].topics || {};
-  //   return topicsObj;
-  // }
-  return requiredBook[0].topics || {};
+    book["topics"].forEach((topic) => {
+      const topicElement = createTopic(
+        book.bookName,
+        topic.topicId,
+        topic.topicName
+      );
+      topicsContainer.insertBefore(topicElement, addTopicButton);
+    });
+  } else {
+    alert(`' ${bookNameInput} ' book doesn't exist. Try Again...☹`);
+  }
 }
 
-function addTopic() {
-  let topicObject = getAllTopics();
+function getTheBook(bookName) {
+  const book = getAllBooks().filter((book) => book.bookName === bookName)[0];
+  return book;
+}
 
-  topicObject = {
-    topicId: Math.floor(Math.random() * 100),
+//WHEN THE ADD TOPIC BUTTON IS CLICKED
+
+addTopicButton.addEventListener("click", function () {
+  const bookName = bookTitle.innerText;
+  addTopic(bookName);
+});
+
+function addTopic(bookName) {
+  const book = getTheBook(bookName);
+  const topics = book.topics;
+  const topicObj = {
+    topicId: Math.floor(Math.random() * 1000),
     topicName: "",
     content: "",
   };
-  // return topicObject;
 
-  const topicElement = createTopic(topicObject.topicId, topicObject.topicName);
-  topicsContainer.insertAdjacentElement("beforeend", topicElement);
+  const topicElement = createTopic(
+    book.bookName,
+    topicObj.topicId,
+    topicObj.topicName
+  );
+  topicsContainer.insertBefore(topicElement, addTopicButton);
+
+  topics.push(topicObj);
+  saveTopics(book.bookName, topics);
 }
 
-function createTopic(topicId, topicName) {
-  let topic = document.createElement("input");
-  topic.classList.add("topics");
-  topic.placeholder = "Topic Name...";
+function saveTopics(bookName, topics) {
+  const allBooks = getAllBooks();
+  const book = allBooks.filter((book) => book.bookName == bookName);
+  book[0].topics = topics;
+  localStorage.setItem("bookshelf-books", JSON.stringify(allBooks));
+}
 
-  topic.value = topicName;
+function createTopic(bookName, topicId, topicName) {
+  const element = document.createElement("input");
+  element.classList.add("topics");
+  element.classList.add(`topic-${topicId}`);
+  element.placeholder = "Topic Name...";
+  element.value = topicName;
 
-  topic.addEventListener("change", function () {
-    updateTopic(topicId, topic.value);
+  element.addEventListener("change", function (e) {
+    const newTopicName = e.target.value;
+    updateTopic(bookName, topicId, newTopicName);
   });
 
-  return topic;
+  element.addEventListener("dblclick", function (e) {
+    if (e.ctrlKey) {
+      const doDelete = confirm("Do you want to delete this topic");
+      if (doDelete) {
+        deleteTopic(bookName, topicId, element);
+      }
+    }
+  });
+  element.addEventListener("click", function (e) {
+    e.target.classList.toggle("topic-selected");
+  });
+  return element;
 }
 
-function updateTopic(topicId, newTopicName) {
-  const topics = getAllTopics();
-  const targetTopic = topics.filter((topic) => topic.id === topicId);
-  targetTopic.topicName = newTopicName;
-  alllBooksContainer.querySelector(`.book-${id}`).innerText = newBookName;
-  saveBooks(books);
+function updateTopic(bookName, topicId, newTopicName) {
+  const topics = getTheBook(bookName).topics;
+  const targetTopic = topics.filter((topic) => topic.topicId === topicId);
+  targetTopic[0]["topicName"] = newTopicName;
+  topicsContainer.querySelector(`.topic-${topicId}`).innerText = newTopicName;
+  saveTopics(bookName, topics);
+  console.log(bookName, topics);
+}
+
+function deleteTopic(bookName, topicId, topicElement) {
+  const topics = getTheBook(bookName).topics;
+  const remainTopics = topics.filter((topic) => topic.topicId !== topicId);
+  saveTopics(bookName, remainTopics);
+  topicsContainer.removeChild(topicElement);
+  console.log(bookName, remainTopics);
+}
+
+//WHEN THE TOPIC NAME IS SELECTED TO WRITE ITS CONTENT
+whiteSheet.addEventListener("change", function (e) {
+  console.log(e);
+  const bookName = bookTitle.innerText;
+  const newContent = whiteSheet.innerText;
+  updateContent(bookName, topicId, newContent);
+});
+
+function updateContent(bookName, topicId, newContent) {
+  const topics = getTheBook(bookName).topics;
+  const targetTopic = topics.filter((topic) => topic.topicId === topicId);
+  targetTopic[0]["content"] = newContent;
+  topicsContainer.querySelector(`.topic-${topicId}`).style.backgroundColor =
+    "blue";
+  console.log(bookName, targetTopic);
+  // saveTopics(bookName, topics);
 }

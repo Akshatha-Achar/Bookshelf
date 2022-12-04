@@ -86,9 +86,9 @@
   border-radius: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, 8rem);
-  padding: 1rem;
-  justify-content: center;
-  align-items: center;
+  padding: 2rem;
+  /* justify-content: center;
+  align-items: center; */
   grid-gap: 1rem;
   border: 1px solid red;
 }
@@ -178,12 +178,14 @@
   align-self: center;
   font-size: 1.5rem;
   color: #9fa3da;
-  font-family: "Bungee Inline", cursive;
+  font-family: cursive;
 }
 
 .tags {
   grid-area: sidebar;
   height: 95%;
+}
+.topics-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -203,6 +205,10 @@
   border: none;
   font-size: 1.2rem;
   background: #ff757d;
+  cursor: pointer;
+}
+.topic-selected {
+  background: #5bceac;
 }
 #topic-1 {
   background: #ff757d;
@@ -230,7 +236,7 @@
   grid-area: sheet;
   justify-self: center;
 
-  width: 90%;
+  width: 85%;
   height: 90%;
   align-self: start;
   justify-self: start;
@@ -329,7 +335,7 @@
     justify-self: center;
     background: #f2aa91;
     border-radius: 1rem;
-    padding: 0.7rem;
+    padding: 1rem;
   }
   .books {
     height: 6rem;
