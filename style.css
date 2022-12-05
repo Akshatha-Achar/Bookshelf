@@ -90,7 +90,6 @@
   /* justify-content: center;
   align-items: center; */
   grid-gap: 1rem;
-  border: 1px solid red;
 }
 
 .books {
@@ -164,23 +163,32 @@
   border-radius: 30px;
 
   display: grid;
-  grid-template-columns: 0.2fr 4fr;
-  grid-template-rows: 0.4fr 4fr 0.4fr;
+  grid-template-columns: 0.5fr 2fr 2fr 0.5fr;
+  grid-template-rows: 0.3fr 4fr 0.6fr;
 
   grid-template-areas:
-    ".... title title"
-    "sidebar sheet sheet"
-    "sidebar pageNumbers pageNumbers";
+    ".... bookName topicName ...."
+    "sidebar sheet sheet ...."
+    "sidebar pageNumbers pageNumbers ....";
 }
 .book-title {
-  grid-area: title;
-  justify-self: center;
-  align-self: center;
+  grid-area: bookName;
+  justify-self: start;
+  align-self: end;
   font-size: 1.5rem;
+
   color: #9fa3da;
   font-family: cursive;
 }
+.topic-title {
+  grid-area: topicName;
+  justify-self: end;
+  align-self: end;
 
+  font-size: 1.2rem;
+  color: #5bceac;
+  font-family: cursive;
+}
 .tags {
   grid-area: sidebar;
   height: 95%;
@@ -190,7 +198,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid red;
 }
 .topics {
   padding: 0;
@@ -231,34 +238,34 @@
 #topic-7 {
   background: #5cc2c8;
 }
+.content-container {
+  grid-area: sheet;
+  padding: 2%;
+  justify-self: stretch;
+  align-self: stretch;
+}
 
 .white-sheet {
-  grid-area: sheet;
-  justify-self: center;
-
-  width: 85%;
-  height: 90%;
-  align-self: start;
-  justify-self: start;
+  width: 95%;
+  height: 95%;
+  padding: 2% 1% 2% 5%;
+  font-size: 1rem;
   background: #f4f4f3;
   border: none;
   outline: none;
   resize: inherit;
-  padding: 1rem;
-  font-size: 1rem;
   border-radius: 0.5rem;
   box-shadow: 0.6rem 0.6rem 4px #2a2a1f;
 }
 
 .pages-container {
   grid-area: pageNumbers;
-  width: 95%;
-  height: 95%;
   justify-self: stretch;
+  align-items: center;
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
 }
 .page-numbers {
@@ -280,10 +287,11 @@
   justify-content: center;
 }
 .add-topic,
-.add-page {
+.delete-topic {
   width: 6rem;
   height: 2rem;
   padding: 0 0.5rem;
+  margin-right: 1%;
   color: #fff;
   background: #fb697f;
   box-shadow: 5px 5px 2px #382424;
@@ -294,6 +302,9 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+}
+.delete-topic {
+  background-color: #5bceac;
 }
 .hidden {
   display: none;
@@ -363,8 +374,12 @@
     height: 1.5rem;
     font-size: 1rem;
   }
-  .add-topic,
-  .add-page {
+  .add-topic {
+    width: 5rem;
+    height: 1.5rem;
+    font-size: 0.7rem;
+  }
+  .delete-topic {
     width: 5rem;
     height: 1.5rem;
     font-size: 0.7rem;
