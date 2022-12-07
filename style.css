@@ -55,12 +55,12 @@
 
 .all-books-section {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   padding: 2rem 0;
   background: #fadbbf;
   display: grid;
-  grid-template-columns: 0.2fr 2fr 1fr 0.2fr;
-  grid-template-rows: 0.2fr 2.3fr 0.5fr;
+  grid-template-columns: 0.1fr 2fr 1fr 0.1fr;
+  grid-template-rows: 0.2fr 2fr 0.5fr;
   grid-template-areas:
     ".... header stationary ...."
     ".... books stationary  ...."
@@ -175,7 +175,7 @@
   grid-template-areas:
     "..... bookName .... topicName ...."
     "..... sidebar sheet sheet ...."
-    "..... sidebar pageNumbers pageNumbers ....";
+    "..... sidebar sheetFooter sheetFooter ....";
 }
 .book-title {
   grid-area: bookName;
@@ -201,13 +201,13 @@
 .topics-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 }
 .topics {
   width: 10rem;
   height: 2rem;
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   text-align: center;
   color: white;
   font-family: cursive;
@@ -241,36 +241,19 @@
   box-shadow: 0.6rem 0.6rem 4px #2a2a1f;
 }
 
-.pages-container {
-  grid-area: pageNumbers;
+.sheet-footer {
+  grid-area: sheetFooter;
   justify-self: stretch;
-  align-items: center;
 
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
 }
-.page-numbers {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.pages {
-  margin: 0.3rem;
-  padding: 0.1rem 0.3rem;
-  background: #fc999e;
-  border-radius: 0.7rem;
-  text-align: center;
-  color: #ffffff;
-  font-family: "Inter";
-  font-weight: 300;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .add-topic,
-.delete-topic {
+.delete-topic,
+.back-to-list {
   width: 6rem;
   height: 2rem;
   padding: 0 0.5rem;
@@ -288,6 +271,9 @@
 }
 .delete-topic {
   background-color: #5bceac;
+}
+.back-to-list {
+  background: #bc99ec;
 }
 .hidden {
   display: none;
@@ -350,24 +336,25 @@
   .inside-book-container {
     display: grid;
     grid-template-columns: 0.2fr 2fr 2fr 0.2fr;
-    grid-template-rows: 0.3fr 0.5fr 2fr 0.3fr;
+    grid-template-rows: 0.3fr auto 2fr 0.3fr;
 
     grid-template-areas:
       ".... bookName topicName ...."
       ".... sidebar sidebar ...."
       ".... sheet sheet ...."
-      "....pageNumbers pageNumbers ....";
+      "....sheetFooter sheetFooter ....";
   }
   .topics-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, 7rem);
-    grid-gap: 0.1rem;
+    grid-gap: 0.2rem;
+    justify-content: center;
+    align-items: center;
   }
 
   .topics {
     width: 7rem;
     height: 1.5rem;
-    /* margin: 0.2rem; */
     font-size: 1rem;
   }
   .book-title {
@@ -380,10 +367,15 @@
     width: 5rem;
     height: 1.5rem;
     font-size: 0.7rem;
+    margin: 0 0.2rem;
   }
-  .delete-topic {
+  .delete-topic,
+  .back-to-list {
     width: 5rem;
     height: 1.5rem;
     font-size: 0.7rem;
+  }
+  .hidden {
+    display: none;
   }
 }

@@ -1,6 +1,6 @@
 "use strict";
 const landingPage = document.querySelector(".landing-page");
-const openButton = document.querySelector("#open-button");
+const enterButton = document.querySelector("#open-button");
 const allBooksSection = document.querySelector(".all-books-section");
 const allBooksContainer = document.querySelector(".all-books-container");
 const addBookButton = document.querySelector("#add-book");
@@ -14,11 +14,13 @@ const topicsContainer = document.querySelector(".topics-container");
 const addTopicButton = document.querySelector(".add-topic");
 const whiteSheet = document.querySelector(".white-sheet");
 const deleteTopicButton = document.querySelector(".delete-topic");
+const backToListButton = document.querySelector(".back-to-list");
 
 //***************************************************
-// LANDING PAGE
+// LANDING PAGE FUNCTIONALITIES
 
-openButton.addEventListener("click", function () {
+//OPEN BUTTON IS CLICKED
+enterButton.addEventListener("click", function () {
   landingPage.classList.add("hidden");
   allBooksSection.classList.remove("hidden");
 });
@@ -27,7 +29,6 @@ openButton.addEventListener("click", function () {
 // ALL BOOKS PAGE
 
 addBookButton.addEventListener("click", addBooks);
-
 getAllBooks().forEach((book) => {
   const bookElement = createBook(book.id, book.bookName);
   allBooksContainer.insertBefore(bookElement, addBookButton);
@@ -83,18 +84,14 @@ function deleteBook(id, book) {
   allBooksContainer.removeChild(book);
 }
 
-//***************************************************
-// INSIDE BOOK PAGE
-
+//WHEN OPENBOOK BUTTON IS CLICKED
 openBookButton.addEventListener("click", openBook);
-
 function openBook() {
+  allBooksSection.classList.add("hidden");
+  insideBookSection.classList.remove("hidden");
   const bookNameInput = prompt("Write the book Name to open:").trim();
   const book = getTheBook(bookNameInput);
-
   if (book) {
-    allBooksSection.classList.add("hidden");
-    insideBookSection.classList.remove("hidden");
     bookTitle.innerText = book.bookName;
 
     book["topics"].forEach((topic) => {
@@ -114,6 +111,9 @@ function getTheBook(bookName) {
   const book = getAllBooks().filter((book) => book.bookName === bookName)[0];
   return book;
 }
+
+//***************************************************
+// INSIDE BOOK PAGE
 
 //WHEN THE ADD TOPIC BUTTON IS CLICKED
 
@@ -171,9 +171,10 @@ function createTopic(bookName, topicId, topicName) {
       );
     }
     e.target.classList.toggle("topic-selected");
-    whiteSheet.value = getTheBook(bookName).topics.filter(
-      (topic) => topic.topicId === topicId
-    )[0].content;
+    whiteSheet.value =
+      getTheBook(bookName).topics.filter(
+        (topic) => topic.topicId === topicId
+      )[0].content || "";
     console.log(`Topic-Name: ${element.value}\n Content: ${whiteSheet.value}`);
   });
   return element;
@@ -235,6 +236,12 @@ function deleteTopic() {
     topicTitle.innerText = "";
   }
 }
+
+//WHEN BACK BUTTON IS CLICKED:
+backToListButton.addEventListener("click", function () {
+  allBooksSection.classList.remove("hidden");
+  insideBookSection.classList.add("hidden");
+});
 
 //  const colors= [background: #ff757d,background: #5bceac,background: #ffac75,background: #bfb553, background: #4fdb72,background: #bc99ec,background: #5cc2c8]
 
