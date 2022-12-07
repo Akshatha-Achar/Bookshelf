@@ -2,7 +2,7 @@
 const landingPage = document.querySelector(".landing-page");
 const openButton = document.querySelector("#open-button");
 const allBooksSection = document.querySelector(".all-books-section");
-const alllBooksContainer = document.querySelector(".all-books-container");
+const allBooksContainer = document.querySelector(".all-books-container");
 const addBookButton = document.querySelector("#add-book");
 const insideBookSection = document.querySelector(".inside-book-section");
 const openBookButton = document.querySelector("#open-book");
@@ -30,23 +30,26 @@ addBookButton.addEventListener("click", addBooks);
 
 getAllBooks().forEach((book) => {
   const bookElement = createBook(book.id, book.bookName);
-  alllBooksContainer.insertBefore(bookElement, addBookButton);
+  allBooksContainer.insertBefore(bookElement, addBookButton);
 });
 
 function addBooks() {
   const books = getAllBooks();
-  const bookNameValue = prompt("What is the book name:").trim();
+  const bookNameValue = prompt("What is the book name:");
   if (bookNameValue) {
+    const bookNameTrim = bookNameValue.trim();
     const bookObject = {
       id: Math.floor(Math.random() * 10000),
-      bookName: bookNameValue,
+      bookName: bookNameTrim,
       topics: [],
     };
 
     const bookElement = createBook(bookObject.id, bookObject.bookName);
-    alllBooksContainer.insertBefore(bookElement, addBookButton);
+    allBooksContainer.insertBefore(bookElement, addBookButton);
     books.push(bookObject);
     saveBooks(books);
+  } else if (bookNameValue === "") {
+    alert("Book Name should not be empty..Try again.");
   }
 }
 
@@ -77,7 +80,7 @@ function saveBooks(books) {
 function deleteBook(id, book) {
   const books = getAllBooks().filter((book) => book.id !== id);
   saveBooks(books);
-  alllBooksContainer.removeChild(book);
+  allBooksContainer.removeChild(book);
 }
 
 //***************************************************
@@ -106,24 +109,6 @@ function openBook() {
     alert(`"${bookNameInput}" book doesn't exist. Try Again..😓`);
   }
 }
-
-//******************* */
-// for Testing
-// const bookNameInput = "Maths";
-// const book = getTheBook(bookNameInput);
-// allBooksSection.classList.add("hidden");
-// insideBookSection.classList.remove("hidden");
-// bookTitle.innerText = book.bookName;
-
-// book["topics"].forEach((topic) => {
-//   const topicElement = createTopic(
-//     book.bookName,
-//     topic.topicId,
-//     topic.topicName
-//   );
-//   topicsContainer.insertBefore(topicElement, addTopicButton);
-// });
-//****************** */
 
 function getTheBook(bookName) {
   const book = getAllBooks().filter((book) => book.bookName === bookName)[0];
@@ -233,7 +218,6 @@ deleteTopicButton.addEventListener("click", deleteTopic);
 function deleteTopic() {
   const bookName = bookTitle.innerText;
   const topicNameUI = prompt("Write the Topic Name to DELETE:").trim();
-  console.log(topicNameUI);
   const topics = getTheBook(bookName).topics;
   const topicRequired = topics.filter(
     (topic) => topic["topicName"] === topicNameUI
@@ -251,3 +235,23 @@ function deleteTopic() {
     topicTitle.innerText = "";
   }
 }
+
+//  const colors= [background: #ff757d,background: #5bceac,background: #ffac75,background: #bfb553, background: #4fdb72,background: #bc99ec,background: #5cc2c8]
+
+//******************* */
+// for Testing
+// const bookNameInput = "Maths";
+// const book = getTheBook(bookNameInput);
+// allBooksSection.classList.add("hidden");
+// insideBookSection.classList.remove("hidden");
+// bookTitle.innerText = book.bookName;
+
+// book["topics"].forEach((topic) => {
+//   const topicElement = createTopic(
+//     book.bookName,
+//     topic.topicId,
+//     topic.topicName
+//   );
+//   topicsContainer.insertBefore(topicElement, addTopicButton);
+// });
+//****************** */

@@ -51,54 +51,59 @@
   background: #fb4750;
 }
 
-/* all books section */
+/* ALL BOOKS SECTION STYLING */
 
 .all-books-section {
-  /* position: relative; */
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 2rem 0;
   background: #fadbbf;
   display: grid;
   grid-template-columns: 0.2fr 2fr 1fr 0.2fr;
-  grid-template-rows: 0.2fr 2.5fr 0.2fr;
+  grid-template-rows: 0.2fr 2.3fr 0.5fr;
   grid-template-areas:
     ".... header stationary ...."
     ".... books stationary  ...."
     ".... footer footer ....";
+  grid-row-gap: 1rem;
 }
 .all-books-header {
   grid-area: header;
+  font-family: cursive;
+  font-size: 1.7rem;
+  text-align: center;
+  color: #6f1a22;
+  text-decoration: underline;
 }
 .all-books-footer {
   grid-area: footer;
-  padding-bottom: 1rem;
+  align-self: start;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+}
+.books-table {
+  grid-area: books;
+  background: #f2aa91;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  height: auto;
 }
 .all-books-container {
-  grid-area: books;
-  width: 90%;
-  height: 85%;
-  justify-self: start;
-  background: #f2aa91;
-  border-radius: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, 8rem);
-  padding: 2rem;
-  /* justify-content: center;
-  align-items: center; */
+  justify-content: center;
+  align-items: center;
   grid-gap: 1rem;
 }
 
 .books {
   background-image: url("./src/images/books/book1.png");
-  height: 8rem;
+  height: 7rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* border: 1px solid red; */
   color: #ffffff;
 
   font-family: cursive;
@@ -117,6 +122,7 @@
   border-radius: 1rem;
   cursor: pointer;
   transition: background 0.2s;
+  justify-self: center;
 }
 #add-book:hover {
   background: rgba(0, 0, 0, 0.2);
@@ -155,26 +161,26 @@
   align-items: center;
 }
 .inside-book-container {
-  padding: 1%;
   width: 90%;
   height: 90%;
+  padding: 2% 0;
   background: #400c0ec5;
   box-shadow: 5px 5px 4px rgba(31, 29, 29, 0.845);
-  border-radius: 30px;
+  border-radius: 1rem;
 
   display: grid;
-  grid-template-columns: 0.5fr 2fr 2fr 0.5fr;
-  grid-template-rows: 0.3fr 4fr 0.6fr;
+  grid-template-columns: 0.2fr 0.5fr 2fr 2fr 0.2fr;
+  grid-template-rows: 0.4fr 4fr 0.4fr;
 
   grid-template-areas:
-    ".... bookName topicName ...."
-    "sidebar sheet sheet ...."
-    "sidebar pageNumbers pageNumbers ....";
+    "..... bookName .... topicName ...."
+    "..... sidebar sheet sheet ...."
+    "..... sidebar pageNumbers pageNumbers ....";
 }
 .book-title {
   grid-area: bookName;
   justify-self: start;
-  align-self: end;
+  align-self: center;
   font-size: 1.5rem;
 
   color: #9fa3da;
@@ -183,7 +189,7 @@
 .topic-title {
   grid-area: topicName;
   justify-self: end;
-  align-self: end;
+  align-self: center;
 
   font-size: 1.2rem;
   color: #5bceac;
@@ -191,16 +197,14 @@
 }
 .tags {
   grid-area: sidebar;
-  height: 95%;
 }
 .topics-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 .topics {
-  padding: 0;
   width: 10rem;
   height: 2rem;
   margin: 0.5rem;
@@ -216,27 +220,6 @@
 }
 .topic-selected {
   background: #5bceac;
-}
-#topic-1 {
-  background: #ff757d;
-}
-#topic-2 {
-  background: #5bceac;
-}
-#topic-3 {
-  background: #ffac75;
-}
-#topic-4 {
-  background: #bfb553;
-}
-#topic-5 {
-  background: #4fdb72;
-}
-#topic-6 {
-  background: #bc99ec;
-}
-#topic-7 {
-  background: #5cc2c8;
 }
 .content-container {
   grid-area: sheet;
@@ -332,46 +315,65 @@
 
   /* all books section  */
   .all-books-section {
-    grid-template-columns: 0.2fr 3fr 0.2fr;
-    grid-template-rows: 0.2fr 3fr 0.2fr;
+    display: grid;
+    grid-template-columns: 0.2fr 3fr 0.1fr;
+    grid-template-rows: 0.2fr 2fr 0.5fr;
     grid-template-areas:
       ".... header  ...."
       ".... books  ...."
       ".... footer ....";
+    grid-gap: 0.7rem;
+  }
+  .all-books-header {
+    font-size: 1.5rem;
   }
   .all-books-container {
-    grid-area: books;
-    width: 90%;
-    height: 90%;
-    justify-self: center;
-    background: #f2aa91;
-    border-radius: 1rem;
-    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 6rem);
   }
   .books {
-    height: 6rem;
-    margin: 1%;
-    font-size: 0.9rem;
+    height: 5rem;
+    font-size: 0.85rem;
   }
   #add-book {
-    width: 6rem;
-    height: 6rem;
-    font-size: 2rem;
+    width: 5rem;
+    height: 5rem;
+    font-size: 1rem;
+  }
+  #open-book {
+    font-size: 1.2rem;
   }
   .stationary-image {
     display: none;
   }
   /* section inside the book  */
+  .inside-book-container {
+    display: grid;
+    grid-template-columns: 0.2fr 2fr 2fr 0.2fr;
+    grid-template-rows: 0.3fr 0.5fr 2fr 0.3fr;
+
+    grid-template-areas:
+      ".... bookName topicName ...."
+      ".... sidebar sidebar ...."
+      ".... sheet sheet ...."
+      "....pageNumbers pageNumbers ....";
+  }
+  .topics-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 7rem);
+    grid-gap: 0.1rem;
+  }
+
+  .topics {
+    width: 7rem;
+    height: 1.5rem;
+    /* margin: 0.2rem; */
+    font-size: 1rem;
+  }
   .book-title {
     font-size: 1.3rem;
   }
-
-  .tags {
-    height: 90%;
-    width: 90%;
-  }
-  .topics {
-    height: 1.5rem;
+  .topic-title {
     font-size: 1rem;
   }
   .add-topic {

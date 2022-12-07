@@ -12,10 +12,6 @@
     />
     <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
-    <!-- <script
-      src="https://kit.fontawesome.com/683aa6d0a2.js"
-      crossorigin="anonymous"
-    ></script> -->
     <title>Bookshelf - Note taking app</title>
   </head>
   <body>
@@ -30,12 +26,13 @@
 
     <!-- book list section  -->
     <section class="all-books-section hidden">
-      <div class="all-books-header"></div>
-      <div class="all-books-container">
-        <button id="add-book">+</button>
+      <h3 class="all-books-header">ALL BOOKS</h3>
+      <div class="books-table">
+        <div class="all-books-container">
+          <button id="add-book">+</button>
+        </div>
       </div>
       <div class="all-books-footer">
-        <!-- <i class="fa-solid fa-book-open"></i>-->
         <button id="open-book">Open book</button>
       </div>
       <img
@@ -59,11 +56,6 @@
           <textarea class="white-sheet"></textarea>
         </div>
         <div class="pages-container">
-          <!-- <div class="page-numbers">
-            <div class="pages page-1">page 1</div>
-            <div class="pages page-2">page 2</div>
-            <div class="pages page-3">page 3</div>
-          </div> -->
           <button class="delete-topic">Delete</button>
         </div>
       </div>
